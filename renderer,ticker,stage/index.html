@@ -24,25 +24,28 @@
     
     <script type="text/javascript">
         const canvas=document.getElementById('myCanvas');
-        const app=new PIXI.Application(  //for creating a pixiJs Application
+        const renderer=new PIXI.Renderer(
             {
-                view: canvas,
-                width: window.innerWidth,
-                height: window.innerHeight
+                view:canvas,
+                width:window.innerWidth,
+                height:window.innerHeight
             }
         );
-        // document.body.appendChild(app.view);
+        const stage=new PIXI.Container();
         const texture=PIXI.Texture.from('IMAGE.png');
         const img=new PIXI.Sprite(texture);
-        img.x=app.renderer.width/2;
-        img.y=app.renderer.height/2;
+        img.x=renderer.width/2;
+        img.y=renderer.height/2;
         img.anchor.x=0.5;
         img.anchor.y=0.5;
-        app.stage.addChild(img);
-        app.ticker.add(animate);//add animation in it
+        stage.addChild(img);
+        const ticker=new PIXI.Ticker();
+        ticker.add(animate);//add animation in it
+        ticker.start();
         function animate()// make animation
         {
             img.rotation+=0.1;
+            renderer.render(stage);
         }
     </script>
 </body>
