@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body
+        {
+            margin: 0;
+        }
+        #myCanvas
+        {
+            display: block;
+            background-color: blue;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="myCanvas"></canvas>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/6.5.2/browser/pixi.js" integrity="sha512-XHX32YCocEDCIiENmO7pf91TtRITLfCagN+uLlj9sJ7RUVBHN1JZtlfb02x4OyXfkuQegd1u6i9mzpRMg+w5xw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+   
+    
+    <script type="text/javascript">
+        const canvas=document.getElementById('myCanvas');
+        const app=new PIXI.Application(  //for creating a pixiJs Application
+            {
+                view: canvas,
+                width: window.innerWidth,
+                height: window.innerHeight
+            }
+        );
+        // document.body.appendChild(app.view);
+        const texture=PIXI.Texture.from('IMAGE.png');
+        const img=new PIXI.Sprite(texture);
+        img.x=app.renderer.width/2;
+        img.y=app.renderer.height/2;
+        img.anchor.x=0.5;
+        img.anchor.y=0.5;
+        app.stage.addChild(img);
+    </script>
+</body>
+</html>
